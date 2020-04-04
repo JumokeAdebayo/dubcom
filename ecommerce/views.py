@@ -25,6 +25,9 @@ def home(request):
     }
     return render(request, 'ecommerce/home.html', context)
 
+@allowed_users()
+def post_list_view(request):
+    return PostListView.as_view()(request)
 
 class PostListView(ListView):
     model = Post
