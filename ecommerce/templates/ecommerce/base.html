@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dublin Ecommerce</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/icofont.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/unslider.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/responsive.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <h2><a href="{% url 'ecommerce-home' %}">Dublin Ecommerce</a></h2>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="menu">
+                                <div class="navbar-nav">
+                                    <ul>
+                                    <li><a class="nav-item nav-link" href="{% url 'ecommerce-home' %}">Home</a></li>
+                                    <li><a class="nav-item nav-link" href="{% url 'ecommerce-about' %}">About</a></li>
+                                    {% if user.is_authenticated %}
+                                        <li><a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a></li>
+                                        <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
+                                        <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                                    {% else %}
+                                    <li><a class="nav-item nav-link" href="/account/login/">Login</a></li>
+                                    <li><a class="nav-item nav-link" href="{% url 'register' %}">Register</a></li>
+                                    {% endif %}
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="bg-text-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-text">
+                            <h3>Dublin Ecommerce Blog</h3>
+                            <p>Welcome to the official Dublin Ecommerce Blog where you can get up-to-date information, reviews from previous buyers on varieties of items that can be sourced for online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="blog-post-area">
+            <div class="container">
+                {% if messages %}
+                      {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+            </div>
+            <!--<div class="pegination">
+                
+                <ul>
+                    <li><i class="fa fa-angle-left" aria-hidden="true"></i></li>
+                    <li class="active">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                </ul>
+-->
+
+                <!--<div class="nav-links">
+                    <span class="page-numbers current">1</span>
+                    <a class="page-numbers" href="#">2</a>
+                    <a class="page-numbers" href="#">3</a>
+                    <a class="page-numbers" href="#">4</a>
+                    <a class="page-numbers" href="#">5</a>
+                    <a class="page-numbers" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </div>
+            </div>-->
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bg">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="footer-menu">
+                                        <ul>
+                                            <li class="active"><a href="{% url 'ecommerce-home' %}">Home</a></li>
+                                            <li><a href="{% url 'ecommerce-about' %}">About</a></li>
+                                            {% if user.is_authenticated %}
+                                            <li><a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a></li>
+                                            <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
+                                            <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                                            <li><a href="/account/two_factor/">Multi Factor Auth</a></li>
+                                            {% else %}
+                                            <li><a class="nav-item nav-link" href="/account/login/">Login</a></li>
+                                            <li><a class="nav-item nav-link" href="{% url 'register' %}">Register</a></li>
+                                            {% endif %}                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="footer-icon">
+                                        <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
+                                    </div>
+                                </div>
+                            </div> .
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/active.js"></script>
+</body>
+
+</html>
