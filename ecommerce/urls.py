@@ -12,7 +12,7 @@ from .views import (
 from .import views
 
 urlpatterns = [
-    path('', post_list_view(), name='ecommerce-home'),
+    path('', post_list_view, name='ecommerce-home'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     #path('post/<int:pk>/', views.post_detail, name='post-detail'),
