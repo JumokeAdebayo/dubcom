@@ -1,33 +1,35 @@
+import logging
+import os
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
 from django.contrib.auth import views, authenticate, login, logout
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserLoginForm, PostForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserLoginForm
 from django_otp.decorators import otp_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 
-
+logger = logging.getLogger(__name__)
 
 @unauthenticated_user
 def register(request):
-	# if request.user.is_authenticated:
-	# 	return redirect ('ecommerce-home')
-	# else:
-	# 	form = UserRegisterForm()
-	#form = form_class(request.POST or None)
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
 		if form.is_valid():
-			form.save()
+			user = form.save()
 			username = form.cleaned_data.get('username')
+
+			group = Group.objects.get(name='bloguser')
+			user.groups.add(group)
 			messages.success(request, f'Your account has been created, you can now login ' + username)
-			return redirect('login')
+			#return redirect('account/login')
 	else:
 		form = UserRegisterForm()
+	logger.debug(form)
 	return render(request, 'users/register.html', {'form': form})
 
 
@@ -51,12 +53,9 @@ def login(request):
 		return render(request, 'account/login.html', context)
 
 
-
-
 #@otp_required
 @login_required
-#@allowed_users(allowed_roles=['admin', 'Author'])
-@admin_only
+@allowed_users(allowed_roles=['admin', 'Author', 'bloguser'])
 def profile(request):
 	#if request.user.is_verified():
 	if request.method == 'POST':
@@ -78,33 +77,3 @@ def profile(request):
 	#else:
 		#return redirect('ecommerce-home')
 
-
-def post_form(request):
-	template = 'ecommerce/post_form.html'
-	form = PostForm(request.POST or None)
-
-	if form.is_valid():
-		form.save()
-
-	else:
-		form = PostForm()
-
-	context = {
-            'form': form,
-    }
-	return render(request, 'post_form.html', context)
-
-
-	# def post_create(request):
-#     form = PostForm(request.POST or None, request.FILES or None)
-#     if form.is_valid():
-#         instance = form.save(commit=False)
-#         instance.save()
-#         messages.success(request, "Successfully Created")
-#         return HttpResponseRedirect(instance.get_absolute_url())
-#         context = {
-#             "form": form,
-#         }
-#     return render(request, "post_form.html", context)
-
-		

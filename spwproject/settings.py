@@ -11,6 +11,18 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://8ff484844d8846baafbce2b61c2fbea6@o373973.ingest.sentry.io/5191298",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,25 +54,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'axes',
     'captcha',
-    #'django_mfa',
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
-    #'lockout.middleware.LockoutMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'django_mfa.middleware.MfaMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'spwproject.urls'
@@ -173,66 +184,65 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
-
-#LOG_PATH = os.path.join(BASE_DIR, 'logs')
-
-# LOGGING = {
-#     'version': 1,
-#     # Version of logging
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'standard': {
-#             'format': '[%(asctime)s] %(levelname)s %(message)s'
-#         },
-#     },
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         }
-#     },
-#     #disable logging 
-#     # Handlers #############################################################
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'filters': ['require_debug_false'],
-#             'class': 'logging.FileHandler',
-#             'filename': 'logs/ecommerce-debug.log',
-#             'maxBytes': 1024*1024*5,
-#             'backupCount': 5,
-#             'formatter': 'standard',
-#         },
-#         'request_handler': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': 'logs/django_request.log',
-#             'maxBytes': 1024*1024*5,
-#             'backupCount': 5,
-#             'formatter': 'standard',
-#         },
-# ########################################################################
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#             'filters': ['require_debug_false'],
-#             'formatter': 'standard',
-#         }
-#     },
-#     # Loggers ####################################################################
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file', 'console'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
-#         },
-#         'django.request': {
-#             'handlers': ['mail_admins'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    # Version of logging
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
+        },
+    },
+    #disable logging 
+    # Handlers #############################################################
+    'handlers': {
+        'default': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/Users/USER/spwproject/logs/ecommerce-debug.log',
+            #'maxBytes': 1024*1024*5,
+            #'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'request_handler': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/Users/USER/spwproject/logs/django_request.log',
+            #'maxBytes': 1024*1024*5,
+            #'backupCount': 5,
+            'formatter': 'standard',
+        },
+########################################################################
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            #'filters': ['require_debug_false'],
+            'formatter': 'standard',
+        },
+        # 'sentry': {
+        #     'level': 'WARNING',
+        #     'class': 'raven.contrib.django.handlers.SentryHandler',
+        # },
+    },
+    # Loggers ####################################################################
+    'loggers': {
+        'django': {
+            'handlers': ['default', 'console', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'request_handler'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        '': {
+            'level': 'ERROR',
+            'handlers': ['console', 'default'],
+        },
+    },
+}

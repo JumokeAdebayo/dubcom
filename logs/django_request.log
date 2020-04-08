@@ -1,0 +1,192 @@
+[2020-04-06 19:08:19,052] ERROR Internal Server Error: /post/new/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\decorators.py", line 41, in wrapper_function
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\views.py", line 48, in post_create_view
+    if form.is_valid():
+UnboundLocalError: local variable 'form' referenced before assignment
+[2020-04-06 19:09:31,479] ERROR Internal Server Error: /post/new/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\decorators.py", line 41, in wrapper_function
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\views.py", line 48, in post_create_view
+    if form.is_valid():
+UnboundLocalError: local variable 'form' referenced before assignment
+[2020-04-06 19:10:55,280] ERROR Internal Server Error: /post/new/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\decorators.py", line 41, in wrapper_function
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\views.py", line 48, in post_create_view
+    if form.is_valid():
+UnboundLocalError: local variable 'form' referenced before assignment
+[2020-04-06 19:15:15,358] ERROR Internal Server Error: /register/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\spwproject\users\decorators.py", line 11, in wrapper_func
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\users\views.py", line 32, in register
+    logger.debug()
+TypeError: debug() missing 1 required positional argument: 'msg'
+[2020-04-06 19:17:16,594] ERROR Internal Server Error: /post/new/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\decorators.py", line 41, in wrapper_function
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\views.py", line 60, in post_create_view
+    logger.debug()
+TypeError: debug() missing 1 required positional argument: 'msg'
+[2020-04-06 19:36:52,741] django.request ERROR Internal Server Error: /post/new/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\decorators.py", line 41, in wrapper_function
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\USER\spwproject\ecommerce\views.py", line 48, in post_create_view
+    if form.is_valid():
+UnboundLocalError: local variable 'form' referenced before assignment
+[2020-04-07 15:55:40,131] django.request ERROR Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\defaulttags.py", line 309, in render
+    return nodelist.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 986, in render
+    output = self.filter_expression.resolve(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 670, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 795, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\base.py", line 857, in _resolve_lookup
+    current = current()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\paginator.py", line 177, in previous_page_number
+    return self.paginator.validate_number(self.number - 1)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\paginator.py", line 47, in validate_number
+    raise EmptyPage(_('That page number is less than 1'))
+django.core.paginator.EmptyPage: That page number is less than 1
+[2020-04-07 17:15:17,965] django.request ERROR Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/login.html
+[2020-04-07 17:33:46,459] django.request ERROR Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/login.html
+[2020-04-07 22:10:33,090] django.request ERROR Internal Server Error: /post/23/update/
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: decorator() got an unexpected keyword argument 'pk'

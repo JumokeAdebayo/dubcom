@@ -1,0 +1,7 @@
+2020-04-06 17:18:32,490 asyncio      DEBUG    Using selector: SelectSelector
+2020-04-06 17:18:54,676 asyncio      DEBUG    Using selector: SelectSelector
+2020-04-06 17:22:12,792 django.utils.autoreload INFO     C:\Users\USER\spwproject\spwproject\urls.py changed, reloading.
+2020-04-06 17:22:12,795 asyncio      DEBUG    Using selector: SelectSelector
+2020-04-06 17:22:16,505 asyncio      DEBUG    Using selector: SelectSelector
+2020-04-06 17:23:44,235 django.utils.autoreload INFO     C:\Users\USER\spwproject\ecommerce\views.py changed, reloading.
+2020-04-06 17:23:44,239 asyncio      DEBUG    Using selector: SelectSelector

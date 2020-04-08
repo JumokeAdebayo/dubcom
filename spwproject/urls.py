@@ -20,27 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
 from two_factor.urls import urlpatterns as tf_urls
-#from django_otp.admin import OTPAdminSite
-
-
-#class OTPAdmin(OTPAdminSite):
- #   pass
-
-#from django.contrib.auth.models import User 
-#from django_otp.plugins.otp_totp.models import TOTPDevice
-
-#admin_site = OTPAdmin(name='OTPAdmin')
-#admin_site.register(User)
-#admin_site.register(TOTPDevice)
-
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
-    path('post-form/', user_views.post_form, name='post_form'),
     path('profile/', user_views.profile, name='profile'),
-    #path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
@@ -49,7 +34,6 @@ urlpatterns = [
     path('', include ('ecommerce.urls')),
     path('captcha/', include ('captcha.urls')),
     path('', include(tf_urls)),
-    #path('settings/', include('django_mfa.urls')),
 ]
 
 

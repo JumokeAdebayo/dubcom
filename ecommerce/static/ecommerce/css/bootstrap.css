@@ -2636,6 +2636,21 @@ input[type="search"] {
 .form-group {
   margin-bottom: 15px;
 }
+div.form-groupp{
+    display: block;
+    text-align: center;
+}
+
+.form-groupp{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+id_auth-password{
+    display: block;
+    text-align: center;
+}
 .radio,
 .checkbox {
   position: relative;

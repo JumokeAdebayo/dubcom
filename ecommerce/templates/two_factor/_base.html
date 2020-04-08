@@ -37,7 +37,9 @@
                                     <li><a class="nav-item nav-link" href="{% url 'ecommerce-home' %}">Home</a></li>
                                     <li><a class="nav-item nav-link" href="{% url 'ecommerce-about' %}">About</a></li>
                                     {% if user.is_authenticated %}
+                                        {% if request.user.is_staff %}
                                         <li><a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a></li>
+                                        {% endif %}
                                         <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
                                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
                                     {% else %}
@@ -75,26 +77,6 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            <!--<div class="pegination">
-                
-                <ul>
-                    <li><i class="fa fa-angle-left" aria-hidden="true"></i></li>
-                    <li class="active">1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                </ul>
--->
-
-                <!--<div class="nav-links">
-                    <span class="page-numbers current">1</span>
-                    <a class="page-numbers" href="#">2</a>
-                    <a class="page-numbers" href="#">3</a>
-                    <a class="page-numbers" href="#">4</a>
-                    <a class="page-numbers" href="#">5</a>
-                    <a class="page-numbers" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                </div>
-            </div>-->
         </section>
         <footer class="footer">
             <div class="container">
@@ -108,13 +90,16 @@
                                             <li class="active"><a href="{% url 'ecommerce-home' %}">Home</a></li>
                                             <li><a href="{% url 'ecommerce-about' %}">About</a></li>
                                             {% if user.is_authenticated %}
-                                            <li><a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a></li>
+                                            {% if request.user.is_staff %}
+                                              <li><a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a></li>
+                                            {% endif %}
                                             <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
                                             <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                                            <li><a href="/account/two_factor/">Multi Factor Auth</a></li>
                                             {% else %}
                                             <li><a class="nav-item nav-link" href="/account/login/">Login</a></li>
                                             <li><a class="nav-item nav-link" href="{% url 'register' %}">Register</a></li>
-                                            {% endif %}
+                                            {% endif %}                                            
                                         </ul>
                                     </div>
                                 </div>
