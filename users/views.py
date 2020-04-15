@@ -53,9 +53,7 @@ def login(request):
 		return render(request, 'account/login.html', context)
 
 
-#@otp_required
 @login_required
-@allowed_users(allowed_roles=['admin', 'Author', 'bloguser'])
 def profile(request):
 	#if request.user.is_verified():
 	if request.method == 'POST':

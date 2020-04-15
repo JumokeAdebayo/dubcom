@@ -13,10 +13,11 @@ from django.views.generic import (
     TemplateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Comment
 from .forms import *
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import Group
 from .filters import PostFilter 
@@ -80,15 +81,32 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
-   model = Post
-   template_name = 'ecommerce/post_detail.html'
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk = pk)
+    comments = Comment.objects.filter(post=post).order_by('-id')
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
 
-def get_context_data(self, *arg, **kwargs):
-             context = super().get_context_data(**kwargs)
-             form = CommentForm()
-             context['form'] = form  # Your comment form
-             return context
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            body = request.POST.get('body')
+            comment = Comment.objects.create(post=post, name=request.user.id, body=body)
+            comment.save()
+            return HttpResponseRedirect(post.get_absolute_url())
+    else:
+        comment_form=CommentForm()
+
+    context ={
+            'post':post,
+            'is_liked':is_liked,
+            'total_likes':post.total_likes(),
+            'comments':comments,
+            'comment_form':comment_form,
+    }
+    return render(request, 'ecommerce/post_detail.html', context)
+
 
 def post(self, request,*arg, **kwargs):
     if request.method == 'POST':
@@ -102,54 +120,18 @@ def post(self, request,*arg, **kwargs):
     }
     return render(request, self.template_name, context)
 
-# def post_detail(request, slug):
-#     template_name = 'ecommerce/post_detail.html'
-#     post = get_object_or_404(Post, Slug = slug)
-#     comments = post.comments.filter(Active=True, Parent__isnull=True)
-#     new_comment = None
-#     #Comment posted
-#     if request.method == 'POST':
-#         comment_form = CommentForm(data=request.POST)
-#         if comment_form.is_valid():
+@login_required
+def like_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user.id)
+        is_liked = False
+    else:
+        post.likes.add(request.user.id)
+        is_liked = True
+    return HttpResponseRedirect(post.get_absolute_url())
 
-#             # Create Comment object but don't save to database yet
-#             new_comment = comment_form.save(commit=False)
-#             # Assign the current post to the comment
-#             new_comment.post = post
-#             # Save the comment to the database
-#             new_comment.save()
-#     else:
-#         comment_form = CommentForm()
-
-#     return render(request, 'ecommerce/post_detail.html', {'post': post,
-#                                            'comments': comments,
-#                                            'new_comment': new_comment,
-#                                            'comment_form': comment_form})
-
-    
-
-    # if request.method == 'post':
-    #     comment_form = CommentForm(data=request.POST)
-    #     if comment_form.is_valid():
-    #         Parent_obj = None
-    #         try:
-    #             Parent_id = int(request.POST.get('Parent_id'))
-    #         except:
-    #             Parent_id = None
-    #         if Parent_id:
-    #             Parent_obj = Comment.objects.get(id=Parent_id)
-    #             if Parent_obj:
-    #                 reply_comment = comment_form.save(commit=False)
-    #                 reply_comment.Parent = Parent_obj
-    #             new_comment = comment_form.save(commit=False)
-    #             new_comment.Post = post
-    #             new_comment.save()
-    #             return redirect('ecommerce:post_detail', slug)
-    #         else:
-    #             comment_form = CommentForm()
-
-
-    # return render(request, 'ecommerce/post_detail.html', {'post':post, 'comment':comments, 'comment_form':comment_form})
 
 @method_decorator([login_required, allowed_users(allowed_roles=['admin', 'Author'])], name='dispatch')
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -166,7 +148,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-@method_decorator([login_required, allowed_users(allowed_roles=['admin'])], name='dispatch')
+@method_decorator([login_required, allowed_users(allowed_roles=['admin', 'Author'])], name='dispatch')
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'

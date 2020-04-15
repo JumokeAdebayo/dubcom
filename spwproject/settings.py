@@ -39,7 +39,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,12 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'axes',
+    'axes_login_actions',
     'captcha',
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
-    'django_filters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +71,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'axes.middleware.AxesMiddleware',
-    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'spwproject.urls'
@@ -145,7 +144,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AXES_FAILURE_LIMIT = 3
-#AXES_COOLOFF_TIME = 1
+AXES_COOLOFF_TIME = 1
 AXES_ONLY_USER_FAILURES = True 
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = False 
 #AXES_LOCKOUT_URL = '/'
@@ -184,50 +183,49 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
+
+AWS_ACCESS_KEY_ID = os.environ.get("A_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("A_SK")
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME ='eu-west-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 LOGGING = {
     'version': 1,
-    # Version of logging
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
             'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
         },
     },
-    #disable logging 
-    # Handlers #############################################################
     'handlers': {
         'default': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/Users/USER/spwproject/logs/ecommerce-debug.log',
-            #'maxBytes': 1024*1024*5,
-            #'backupCount': 5,
             'formatter': 'standard',
         },
         'request_handler': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/Users/USER/spwproject/logs/django_request.log',
-            #'maxBytes': 1024*1024*5,
-            #'backupCount': 5,
             'formatter': 'standard',
         },
-########################################################################
         'console': {
             'class': 'logging.StreamHandler',
         },
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
-            #'filters': ['require_debug_false'],
             'formatter': 'standard',
         },
-        # 'sentry': {
-        #     'level': 'WARNING',
-        #     'class': 'raven.contrib.django.handlers.SentryHandler',
-        # },
     },
-    # Loggers ####################################################################
     'loggers': {
         'django': {
             'handlers': ['default', 'console', 'mail_admins'],

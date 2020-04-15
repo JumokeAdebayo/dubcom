@@ -10,6 +10,7 @@ User = get_user_model()
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
@@ -19,6 +20,8 @@ class Post(models.Model):
     def get_absolute_url(self):
     	return reverse('post-detail', kwargs={'pk': self.pk})
 
+    def total_likes(self):
+        return self.likes.count()
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
