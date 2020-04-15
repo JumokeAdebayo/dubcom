@@ -50,7 +50,7 @@ def post_create_view(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            #return redirect ('post-create')
+            return redirect ('ecommerce-home')
     else:
         form = PostForm()
 
@@ -58,7 +58,6 @@ def post_create_view(request):
         
         'form': form,
     }
-    logger.debug(form)
     return render(request, 'ecommerce/post_form.html', context)
         
 
