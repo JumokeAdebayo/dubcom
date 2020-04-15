@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE)
  */
 
-/*.owl-carousel,
+.owl-carousel,
 .owl-carousel .owl-item {
     -webkit-tap-highlight-color: transparent;
     position: relative
@@ -203,4 +203,4 @@
     z-index: 1;
     height: 100%;
     width: 100%
-}*/
+}
