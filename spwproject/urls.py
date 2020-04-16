@@ -23,7 +23,7 @@ from two_factor.urls import urlpatterns as tf_urls
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('ecomadmin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
