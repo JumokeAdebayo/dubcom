@@ -153,7 +153,6 @@ AXES_FAILURE_LIMIT = 3
 AXES_COOLOFF_TIME = 1
 AXES_ONLY_USER_FAILURES = True 
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = False 
-#AXES_LOCKOUT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -172,13 +171,12 @@ SECURE_HSTS_SECONDS = 3600
 
 SESSION_EXPIRE_SECONDS = 600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-#SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 600
+SESSION_TIMEOUT_REDIRECT = 'commonuser/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -207,7 +205,6 @@ AWS_S3_REGION_NAME ='eu-west-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
 

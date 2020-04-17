@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from TWO_FACTOR_AUTU import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from captcha.models import CaptchaStore
@@ -33,25 +34,31 @@ def register(request):
 	return render(request, 'users/register.html', {'form': form})
 
 
-def login(request):
-	if request.user.is_authenticated:
-		return redirect ('ecommerce-home')
-	else:
-		if request.method == 'POST':
-			username = request.POST.get('username')
-			password = request.POST.get('password')
+# def login(request):
+# 	if request.user.is_authenticated:
+# 		return redirect ('ecommerce-home')
+# 	else:
+# 		if request.method == 'POST':
+# 			username = request.POST.get('username')
+# 			password = request.POST.get('password')
 
-			user = authenticate(request, username=username, password=password)
+# 			user = authenticate(request, username=username, password=password)
 
-			if user is not None:
-				UserLoginForm(request, user)
-				return redirect('ecommerce-home')
-			else:
-				messages.info(request, 'Username OR password is incorrect')
+# 			if user is not None:
+# 				UserLoginForm(request, user)
+# 				return redirect('ecommerce-home')
+# 			else:
+# 				messages.info(request, 'Username OR password is incorrect')
 
-		context = {}
-		return render(request, 'account/login.html', context)
+# 		context = {}
+# 		return render(request, 'account/login.html', context)
 
+class YourLoginView(LoginView):
+    form_list = (
+        ('auth', UserLoginForm),
+        ('token', AuthenticationTokenForm),
+        ('backup', BackupTokenForm),
+    )
 
 @login_required
 def profile(request):

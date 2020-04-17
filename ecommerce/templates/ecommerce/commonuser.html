@@ -1,8 +1,7 @@
 {% extends "ecommerce/base.html" %}
 {% block content %}
 
-<h3> You are unauthorized to view that page </h3>
-<h4> Navigate to other pages of interest </h4>
+<h3> Your session has timed out. Do login again. <a class="ml-2" href="/account/login/">Sign In</a> </h3>
             {% for post in posts %}
             <div class="col-md-3">
               <div class="single-post">
