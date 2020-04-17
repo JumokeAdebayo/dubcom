@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from TWO_FACTOR_AUTU import LoginView
+from two_factor.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from captcha.models import CaptchaStore
@@ -53,7 +53,8 @@ def register(request):
 # 		context = {}
 # 		return render(request, 'account/login.html', context)
 
-class YourLoginView(LoginView):
+class MyLoginView(LoginView):
+	template_name = 'users/login.html'
     form_list = (
         ('auth', UserLoginForm),
         ('token', AuthenticationTokenForm),
