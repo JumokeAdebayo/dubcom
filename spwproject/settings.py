@@ -171,7 +171,7 @@ SECURE_HSTS_SECONDS = 3600
 
 SESSION_EXPIRE_SECONDS = 600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-SESSION_TIMEOUT_REDIRECT = 'commonuser/'
+SESSION_TIMEOUT_REDIRECT = 'ecommerce-commonuser'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
