@@ -162,7 +162,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'ecommerce/about.html', {'title':'about'})
 
-
+@login_required
 def commonuser(request):
     context = {}
     return render(request, 'ecommerce/commonuser.html', context)
