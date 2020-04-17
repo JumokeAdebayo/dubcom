@@ -55,11 +55,11 @@ def register(request):
 
 class MyLoginView(LoginView):
 	template_name = 'users/login.html'
-	    form_list = (
-	        ('auth', UserLoginForm),
-	        ('token', AuthenticationTokenForm),
-	        ('backup', BackupTokenForm),
-	    )
+		form_list = (
+			('auth', UserLoginForm),
+			('token', AuthenticationTokenForm),
+			('backup', BackupTokenForm),
+		)
 
 @login_required
 def profile(request):
