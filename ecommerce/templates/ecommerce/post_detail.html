@@ -45,7 +45,7 @@
           {{ comment.body | linebreaks }}
         </blockquote>
         <p class="font-weight-bold">
-            by {{ comment.name }},
+            by {{ user.get_username }},
             <span class=" text-muted font-weight-normal">
               {{ comment.created_on }}
             </span>

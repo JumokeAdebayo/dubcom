@@ -17,11 +17,10 @@ from .models import Post, Comment
 from .forms import *
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import Group
-from .filters import PostFilter 
 from django.forms import inlineformset_factory
+from django.contrib import messages
 
 
 logger = logging.getLogger(__name__)
@@ -92,8 +91,9 @@ def post_detail(request, pk):
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             body = request.POST.get('body')
-            comment = Comment.objects.create(post=post, name=request.user.id, body=body)
+            comment = Comment.objects.create(post=post, body=body)
             comment.save()
+            messages.success(request, 'Your comment was successfully added!')
             return HttpResponseRedirect(post.get_absolute_url())
     else:
         comment_form=CommentForm()
