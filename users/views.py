@@ -26,8 +26,7 @@ def register(request):
 			group = Group.objects.get(name='bloguser')
 			user.groups.add(group)
 			messages.success(request, f'Your account has been created, you can now login ' + username)
-			#return redirect('account/login')
-	else:
+	else: 
 		form = UserRegisterForm()
 	logger.debug(form)
 	return render(request, 'users/register.html', {'form': form})

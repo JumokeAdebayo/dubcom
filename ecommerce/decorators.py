@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
+from django.contrib import messages
 
 
 def unauthenticated_user(view_func):
@@ -23,6 +24,7 @@ def allowed_users(allowed_roles=[]):
 			if group in allowed_roles:
 				return view_func(request, *args, **kwargs)
 			else:
+				messages.info(request, 'Pemission Denied')
 				return redirect('ecommerce-home')
 		return wrapper_func
 	return decorator
