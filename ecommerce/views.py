@@ -166,5 +166,4 @@ def commonuser(request):
     context = {}
     return render(request, 'ecommerce/commonuser.html', context)
 
-    
 # Create your views here.

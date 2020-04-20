@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'axes',
-    'axes_login_actions',
     'captcha',
     'django_otp',
     'django_otp.plugins.otp_static',
