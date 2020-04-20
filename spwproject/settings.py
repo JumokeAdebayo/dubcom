@@ -211,52 +211,52 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
 
-#LOG_PATH = os.path.join(BASE_DIR, 'spwproject')
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'standard': {
-#             'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'default': {
-#             'level': 'ERROR',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/logs/ecommerce-debug.log',
-#             'formatter': 'standard',
-#         },
-#         'request_handler': {
-#             'level': 'ERROR',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': '/logs/django_request.log',
-#             'formatter': 'standard',
-#         },
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#             'formatter': 'standard',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['default', 'console', 'mail_admins'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
-#         },
-#         'django.request': {
-#             'handlers': ['mail_admins', 'request_handler'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#         '': {
-#             'level': 'ERROR',
-#             'handlers': ['console', 'default'],
-#         },
-#     },
-# }
+LOG_PATH = os.path.join(BASE_DIR, 'spwproject')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/logs/ecommerce-debug.log',
+            'formatter': 'standard',
+        },
+        'request_handler': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/logs/django_request.log',
+            'formatter': 'standard',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['default', 'console', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'request_handler'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        '': {
+            'level': 'ERROR',
+            'handlers': ['console', 'default'],
+        },
+    },
+}
