@@ -33,7 +33,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'k=mu9)&ae+kf=e-k+_n6)x*9lp$av=hgcq72jpuh60om-z%1lx'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -167,8 +166,8 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_SSL_REDIRECT = False
-SECURE_HSTS_SECONDS = 600
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 86400
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 X_FRAME_OPTIONS = 'DENY'
@@ -211,52 +210,52 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
 
-LOG_PATH = os.path.join(BASE_DIR, 'spwproject')
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'standard': {
-            'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'default': {
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/logs/ecommerce-debug.log',
-            'formatter': 'standard',
-        },
-        'request_handler': {
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/logs/django_request.log',
-            'formatter': 'standard',
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'standard',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['default', 'console', 'mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
-        },
-        'django.request': {
-            'handlers': ['mail_admins', 'request_handler'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        '': {
-            'level': 'ERROR',
-            'handlers': ['console', 'default'],
-        },
-    },
-}
+# LOG_PATH = os.path.join(BASE_DIR, 'spwproject')
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'standard': {
+#             'format': '[%(asctime)s] %(name)-12s %(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'default': {
+#             'level': 'ERROR',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': '/logs/ecommerce-debug.log',
+#             'formatter': 'standard',
+#         },
+#         'request_handler': {
+#             'level': 'ERROR',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': '/logs/django_request.log',
+#             'formatter': 'standard',
+#         },
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler',
+#             'formatter': 'standard',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['default', 'console', 'mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+#         },
+#         'django.request': {
+#             'handlers': ['mail_admins', 'request_handler'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#         '': {
+#             'level': 'ERROR',
+#             'handlers': ['console', 'default'],
+#         },
+#     },
+# }
